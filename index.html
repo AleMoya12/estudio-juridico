@@ -1,0 +1,565 @@
+<title>Propuesta Estudio Tino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#ECE4D8;
+    --paper:#FBF7F1;
+    --surface:#FFFFFF;
+    --ink:#2A211F;
+    --ink-soft:#6E6058;
+    --line:#E6DBCD;
+    --line-strong:#D8CBB9;
+    --burgundy:#7A1E27;
+    --burgundy-deep:#5A141B;
+    --burgundy-ink:#7A1E27;
+    --gold:#A9812F;
+    --gold-soft:#D9BE86;
+    --rose-bg:#F5EAE6;
+    --rose-line:#E7CFC9;
+    --shadow:0 24px 60px -30px rgba(50,20,20,.45);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --desk:#0E0A08;
+      --paper:#1B1512;
+      --surface:#221A16;
+      --ink:#F1E9DF;
+      --ink-soft:#B4A498;
+      --line:#362A23;
+      --line-strong:#463830;
+      --burgundy:#CF6670;
+      --burgundy-deep:#B4434E;
+      --burgundy-ink:#E9C7C1;
+      --gold:#D9BE86;
+      --gold-soft:#C4A56A;
+      --rose-bg:#2A1917;
+      --rose-line:#4A2C2A;
+      --shadow:0 24px 60px -30px rgba(0,0,0,.7);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --desk:#0E0A08;
+    --paper:#1B1512;
+    --surface:#221A16;
+    --ink:#F1E9DF;
+    --ink-soft:#B4A498;
+    --line:#362A23;
+    --line-strong:#463830;
+    --burgundy:#CF6670;
+    --burgundy-deep:#B4434E;
+    --burgundy-ink:#E9C7C1;
+    --gold:#D9BE86;
+    --gold-soft:#C4A56A;
+    --rose-bg:#2A1917;
+    --rose-line:#4A2C2A;
+    --shadow:0 24px 60px -30px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--desk);
+    color:var(--ink);
+    font-family:"Libre Franklin",system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding-block:32px;
+    padding-inline:16px;
+  }
+  .doc{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .pad{padding:clamp(22px,4.5vw,52px)}
+
+  h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;text-wrap:balance;color:var(--ink)}
+  .eyebrow{
+    font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin:0 0 12px;
+  }
+  p{margin:0 0 14px}
+  .lead{font-size:16.5px;color:var(--ink-soft)}
+  strong{font-weight:600;color:var(--ink)}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ---------- Masthead ---------- */
+  .mast{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+    padding:26px clamp(22px,4.5vw,52px);
+    background:var(--burgundy);color:#F7ECEA;
+    flex-wrap:wrap;
+  }
+  :root[data-theme="dark"] .mast,
+  :root:not([data-theme="light"]) .mast{}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{width:46px;height:46px;flex:none}
+  .brand-name{font-family:"Fraunces",serif;font-weight:600;font-size:18px;letter-spacing:.02em;color:#FBF3F1;line-height:1.1}
+  .brand-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:3px}
+  .mast-meta{text-align:right;font-size:12px;color:#E8CFCC;letter-spacing:.04em}
+  .mast-meta .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
+  .mast-meta b{color:#FBF3F1;font-weight:600}
+
+  /* ---------- Title block ---------- */
+  .title h1{font-size:clamp(28px,5.4vw,42px);margin:0 0 14px;color:var(--burgundy-ink)}
+  .prepared{
+    display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:18px;
+    padding-top:18px;border-top:1px solid var(--line);font-size:13px;
+  }
+  .prepared .k{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:2px}
+  .ph{color:var(--gold);border-bottom:1px dashed var(--gold-soft);font-style:normal}
+
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+  .section{padding:clamp(26px,4.5vw,46px) clamp(22px,4.5vw,52px)}
+  .section h2{font-size:clamp(20px,3.4vw,26px);margin:0 0 6px;color:var(--ink)}
+  .section > .eyebrow + h2{margin-top:0}
+  .goldline{width:44px;height:3px;background:var(--gold);border-radius:2px;margin:14px 0 22px}
+
+  /* ---------- Rubros explainer ---------- */
+  .rubros{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .rubro{
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .rubro .ico{width:30px;height:30px;color:var(--burgundy)}
+  .rubro h3{font-size:16px;margin:2px 0 0}
+  .rubro .tagk{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .rubro p{font-size:13px;color:var(--ink-soft);margin:0}
+
+  /* ---------- Options ---------- */
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+  .opt{
+    background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .opt.feat{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+  .opt-head{padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+  .opt.feat .opt-head{background:var(--rose-bg);border-bottom-color:var(--rose-line)}
+  .opt-kick{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+  .opt-kick .lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .ribbon{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--gold);padding:4px 9px;border-radius:999px}
+  :root[data-theme="dark"] .ribbon,:root:not([data-theme="light"]) .ribbon{color:#20160b}
+  .opt-head h3{font-size:22px;margin:0 0 4px;color:var(--burgundy-ink)}
+  .opt-head .desc{font-size:12.5px;color:var(--ink-soft);margin:0}
+
+  .lines{display:flex;flex-direction:column;gap:2px;padding:6px 22px 4px}
+  .line{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .line:last-child{border-bottom:0}
+  .line .ico{width:22px;height:22px;color:var(--burgundy);flex:none;margin-top:2px}
+  .line .body{flex:1;min-width:0}
+  .line .rk{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block}
+  .line .rn{font-size:14px;font-weight:600;margin:1px 0 2px}
+  .line .rd{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+  .line .val{text-align:right;flex:none;white-space:nowrap}
+  .line .price{font-family:"Fraunces",serif;font-weight:600;font-size:19px;color:var(--ink)}
+  .line .per{font-size:11px;color:var(--ink-soft);display:block;margin-top:1px}
+  .line.est .price{color:var(--burgundy-ink)}
+  .est-tag{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-soft);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+
+  .incl{padding:16px 22px 22px;border-top:1px solid var(--line);background:transparent}
+  .incl .h{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:10px}
+  ul.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+  ul.check li{position:relative;padding-left:22px;font-size:12.5px;color:var(--ink)}
+  ul.check li::before{
+    content:"";position:absolute;left:0;top:6px;width:12px;height:9px;
+    border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);
+    transform:rotate(-45deg);
+  }
+
+  /* ---------- Table ---------- */
+  .twrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:440px}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  thead th{background:var(--burgundy);color:#F7ECEA;font-weight:600;font-size:11.5px;letter-spacing:.05em}
+  thead th:not(:first-child){text-align:center}
+  tbody td:not(:first-child){text-align:center}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--surface) 60%,transparent)}
+  td.feat-col{background:var(--rose-bg) !important;color:var(--burgundy-ink);font-weight:600}
+  .yes{color:var(--burgundy);font-weight:700}
+  .no{color:var(--ink-soft);opacity:.6}
+  tfoot td{font-family:"Fraunces",serif;font-weight:600;font-size:15px;border-top:2px solid var(--line-strong)}
+
+  /* ---------- Money timeline ---------- */
+  .money{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .mcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+  .mcard.feat{border-color:var(--gold-soft)}
+  .mcard h3{font-size:17px;color:var(--burgundy-ink);margin:0 0 2px}
+  .mcard .sub{font-size:11.5px;color:var(--ink-soft);margin:0 0 14px}
+  .mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .mrow:last-child{border-bottom:0}
+  .mrow .ml{font-size:12.5px}
+  .mrow .ml small{display:block;color:var(--ink-soft);font-size:10.5px;letter-spacing:.04em}
+  .mrow .mv{font-family:"Fraunces",serif;font-weight:600;font-size:16px;white-space:nowrap}
+  .mrow.big{margin-top:4px;padding-top:14px;border-top:1px solid var(--line-strong);border-bottom:0}
+  .mrow.big .ml{font-weight:600}
+  .mrow.big .mv{color:var(--burgundy-ink);font-size:18px}
+
+  /* ---------- Notes / conditions ---------- */
+  .notes{background:var(--rose-bg);border:1px solid var(--rose-line);border-radius:10px;padding:20px 22px}
+  .notes ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+  .notes li{font-size:12.5px;color:var(--ink)}
+  .cond{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:6px}
+  .cond .item .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:3px}
+  .cond .item p{font-size:12.5px;color:var(--ink);margin:0}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--burgundy);color:#F7ECEA;text-align:center;padding:clamp(28px,5vw,44px)}
+  .cta h2{color:#FBF3F1;font-size:clamp(20px,3.4vw,26px);margin:0 0 8px}
+  .cta p{color:#E8CFCC;margin:0 auto 18px;max-width:44ch}
+  .cta .contact{display:inline-flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;font-size:14px;padding-top:16px;border-top:1px solid rgba(217,190,134,.3)}
+  .cta .contact .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:2px}
+  .cta .contact b{color:#FBF3F1}
+  .cta .ph{color:var(--gold-soft);border-bottom-color:rgba(217,190,134,.6)}
+
+  .foot{padding:16px clamp(22px,4.5vw,52px);font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--surface);border-top:1px solid var(--line)}
+
+  .hint{
+    max-width:880px;margin:0 auto 14px;padding:10px 16px;font-size:12px;color:var(--ink-soft);
+    background:color-mix(in srgb,var(--gold-soft) 22%,var(--paper));border:1px solid var(--gold-soft);border-radius:6px;
+  }
+  .hint b{color:var(--ink)}
+
+  @media (max-width:640px){
+    .rubros,.opts,.money,.cond{grid-template-columns:1fr}
+    .mast-meta{text-align:left}
+    .line .val{align-self:flex-start}
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{padding:0;max-width:none}
+    .doc{border:0;border-radius:0;box-shadow:none}
+    .hint{display:none}
+    .section,.opt,.rubro,.mcard,.notes{break-inside:avoid}
+    .cta{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .mast,thead th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="doc">
+
+    <!-- MASTHEAD -->
+    <header class="mast">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 46 46" aria-hidden="true">
+          <circle cx="23" cy="23" r="22" fill="none" stroke="var(--gold-soft)" stroke-width="1.4" opacity=".7"/>
+          <g stroke="#F7ECEA" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="23" y1="12" x2="23" y2="33"/>
+            <line x1="14" y1="16" x2="32" y2="16"/>
+            <circle cx="23" cy="12" r="1.4" fill="#F7ECEA" stroke="none"/>
+            <path d="M14 16 L11 22 L17 22 Z"/>
+            <path d="M32 16 L29 22 L35 22 Z"/>
+            <path d="M10.5 22 Q14 25.5 17.5 22"/>
+            <path d="M28.5 22 Q32 25.5 35.5 22"/>
+            <line x1="18" y1="34" x2="28" y2="34"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">Estudio Jurídico Tino &amp; Asoc.</div>
+          <div class="brand-tag">Tus derechos van primero</div>
+        </div>
+      </div>
+      <div class="mast-meta">
+        <div class="k">Propuesta comercial</div>
+        <div><b>N.º 2026-09</b></div>
+        <div style="margin-top:6px" class="k">Fecha</div>
+        <div><b>Septiembre 2026</b></div>
+      </div>
+    </header>
+
+    <!-- TITLE -->
+    <div class="pad title">
+      <p class="eyebrow">Presencia digital &amp; captación de clientes</p>
+      <h1>Sitio web profesional, campañas en Google Ads y acompañamiento mensual</h1>
+      <p class="lead">Separamos en tres rubros <strong>el diseño del sitio</strong>, <strong>el acompañamiento mensual</strong> y <strong>la inversión en pauta publicitaria</strong>, para que quede claro en qué se invierte y qué esperar de cada parte.</p>
+      <div class="prepared">
+        <div>
+          <span class="k">Preparado para</span>
+          Estudio Jurídico Tino &amp; Asoc. — Buenos Aires
+        </div>
+        <div>
+          <span class="k">Preparado por</span>
+          Alejandro Moya — SEO &amp; Developer
+        </div>
+        <div>
+          <span class="k">WhatsApp</span>
+          +54 9 11 6499-0312
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <!-- INTRO / WHY -->
+    <section class="section">
+      <p class="eyebrow">Por qué</p>
+      <h2>Sus clientes ya los están buscando en Google</h2>
+      <div class="goldline"></div>
+      <p>Hoy <strong>8 de cada 10 personas</strong> que necesitan un abogado —por un accidente de tránsito, un despido, un caso de acoso laboral o un problema de consumo— arrancan buscando en Google. Sin un sitio web propio, esas consultas terminan en la competencia.</p>
+      <p style="margin-bottom:0">El estudio ya tiene una marca sólida y presencia en redes (más de 2.100 seguidores en Facebook). El paso que falta es capturar esa demanda con un <strong>sitio web propio</strong> y <strong>campañas de Google Ads</strong> que conviertan las búsquedas en consultas concretas por WhatsApp y formulario.</p>
+    </section>
+
+    <hr class="rule">
+
+    <!-- RUBROS EXPLAINER -->
+    <section class="section">
+      <p class="eyebrow">Cómo se compone la inversión</p>
+      <h2>Tres rubros, bien separados</h2>
+      <div class="goldline"></div>
+      <p style="margin-bottom:22px">Tal como lo pidieron, la inversión se divide en tres partes independientes. Cada una se puede contratar y ajustar por separado:</p>
+      <div class="rubros">
+        <div class="rubro">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+          <span class="tagk">Rubro 1 · Pago único</span>
+          <h3>Diseño del sitio web</h3>
+          <p>El desarrollo del sitio: diseño, programación, textos, versión celular, formulario, WhatsApp y puesta en línea. Se paga <strong>una sola vez</strong> y la web queda del estudio.</p>
+        </div>
+        <div class="rubro">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.06 9.06 0 0 1-3.5-.7L3 21l1.7-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          <span class="tagk">Rubro 2 · Mensual</span>
+          <h3>Acompañamiento</h3>
+          <p>Nuestros honorarios por gestionar y optimizar las campañas mes a mes: armado de anuncios, palabras clave, informe de resultados y soporte. Es <strong>lo que cobramos nosotros</strong>.</p>
+        </div>
+        <div class="rubro">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l4 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg>
+          <span class="tagk">Rubro 3 · A cargo del cliente</span>
+          <h3>Pauta publicitaria</h3>
+          <p>El dinero que se paga <strong>directamente a Google</strong> para mostrar los anuncios. No lo cobramos nosotros; es 100% ajustable y se puede empezar con poco e ir escalando según resultados.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- OPTIONS -->
+    <section class="section">
+      <p class="eyebrow">Dos opciones de sitio web</p>
+      <h2>Elijan el punto de partida</h2>
+      <div class="goldline"></div>
+      <p style="margin-bottom:22px">Presentamos dos alternativas de sitio. Ambas incluyen los tres rubros; cambia el alcance de la web y del acompañamiento. Todos los valores están en <strong>pesos argentinos (ARS)</strong>.</p>
+
+      <div class="opts">
+        <!-- OPTION A -->
+        <div class="opt">
+          <div class="opt-head">
+            <div class="opt-kick"><span class="lab">Opción A</span></div>
+            <h3>Presencia Esencial</h3>
+            <p class="desc">Landing de una página. Ideal para salir a Google ya, con una inversión controlada.</p>
+          </div>
+          <div class="lines">
+            <div class="line">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+              <div class="body">
+                <span class="rk">Diseño del sitio</span>
+                <div class="rn">Landing de una página</div>
+                <div class="rd">Diseño, programación y publicación</div>
+              </div>
+              <div class="val"><span class="price num">$ 250.000</span><span class="per">pago único</span></div>
+            </div>
+            <div class="line">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.06 9.06 0 0 1-3.5-.7L3 21l1.7-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+              <div class="body">
+                <span class="rk">Acompañamiento</span>
+                <div class="rn">1 campaña gestionada</div>
+                <div class="rd">Optimización + informe + soporte WhatsApp</div>
+              </div>
+              <div class="val"><span class="price num">$ 70.000</span><span class="per">/ mes</span></div>
+            </div>
+            <div class="line est">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l4 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a4 4 0 0 1 0 7"/></svg>
+              <div class="body">
+                <span class="rk">Pauta sugerida <span class="est-tag">estimado</span></span>
+                <div class="rn">Inversión en Google</div>
+                <div class="rd">A cargo del estudio · ajustable</div>
+              </div>
+              <div class="val"><span class="price num">$ 80–150mil</span><span class="per">/ mes aprox.</span></div>
+            </div>
+          </div>
+          <div class="incl">
+            <div class="h">La web incluye</div>
+            <ul class="check">
+              <li>Página única con secciones: inicio, servicios, sobre el estudio y contacto</li>
+              <li>Diseño adaptado a celular y tablet (responsive)</li>
+              <li>Formulario de contacto y botón de WhatsApp</li>
+              <li>SEO básico: metadatos, títulos, sitemap y robots.txt</li>
+              <li>Certificado de seguridad (SSL) y dominio configurado</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OPTION B -->
+        <div class="opt feat">
+          <div class="opt-head">
+            <div class="opt-kick"><span class="lab">Opción B</span><span class="ribbon">Más completo</span></div>
+            <h3>Presencia Profesional</h3>
+            <p class="desc">Sitio institucional de varias páginas. Máxima autoridad y visibilidad para el estudio.</p>
+          </div>
+          <div class="lines">
+            <div class="line">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+              <div class="body">
+                <span class="rk">Diseño del sitio</span>
+                <div class="rn">Sitio institucional multipágina</div>
+                <div class="rd">Diseño, programación y publicación</div>
+              </div>
+              <div class="val"><span class="price num">$ 300.000</span><span class="per">pago único</span></div>
+            </div>
+            <div class="line">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 9.06 9.06 0 0 1-3.5-.7L3 21l1.7-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+              <div class="body">
+                <span class="rk">Acompañamiento</span>
+                <div class="rn">Hasta 3 campañas segmentadas</div>
+                <div class="rd">Laboral · tránsito · consumidor · informe completo</div>
+              </div>
+              <div class="val"><span class="price num">$ 100.000</span><span class="per">/ mes</span></div>
+            </div>
+            <div class="line est">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l4 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg>
+              <div class="body">
+                <span class="rk">Pauta sugerida <span class="est-tag">estimado</span></span>
+                <div class="rn">Inversión en Google</div>
+                <div class="rd">A cargo del estudio · ajustable</div>
+              </div>
+              <div class="val"><span class="price num">$ 150–300mil</span><span class="per">/ mes aprox.</span></div>
+            </div>
+          </div>
+          <div class="incl">
+            <div class="h">La web incluye — todo lo de la Opción A, más:</div>
+            <ul class="check">
+              <li>Páginas separadas: inicio, áreas de práctica, casos de éxito, el estudio y contacto</li>
+              <li>Sección de equipo y testimonios de clientes</li>
+              <li>SEO técnico completo: Open Graph, Search Console y optimización de velocidad</li>
+              <li>Animaciones y experiencia de navegación premium</li>
+              <li>Estructura pensada para posicionar por especialidad jurídica</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- COMPARISON -->
+    <section class="section">
+      <p class="eyebrow">De un vistazo</p>
+      <h2>Comparación de las dos opciones</h2>
+      <div class="goldline"></div>
+      <div class="twrap">
+        <table>
+          <thead>
+            <tr><th>Característica</th><th>Esencial</th><th>Profesional ★</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tipo de sitio</td><td>1 página</td><td class="feat-col">Multipágina</td></tr>
+            <tr><td>Diseño responsive (celular)</td><td class="yes">✓</td><td class="feat-col">✓</td></tr>
+            <tr><td>Formulario + WhatsApp</td><td class="yes">✓</td><td class="feat-col">✓</td></tr>
+            <tr><td>SSL + dominio</td><td class="yes">✓</td><td class="feat-col">✓</td></tr>
+            <tr><td>Áreas de práctica detalladas</td><td class="no">—</td><td class="feat-col">✓</td></tr>
+            <tr><td>Casos de éxito y testimonios</td><td class="no">—</td><td class="feat-col">✓</td></tr>
+            <tr><td>SEO técnico completo</td><td>Básico</td><td class="feat-col">Completo</td></tr>
+            <tr><td>Campañas de Google Ads / mes</td><td>1</td><td class="feat-col">Hasta 3</td></tr>
+            <tr><td>Informe de resultados</td><td>Mensual</td><td class="feat-col">Mensual completo</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Diseño (pago único)</td><td class="num">$ 250.000</td><td class="feat-col num">$ 300.000</td></tr>
+            <tr><td>Acompañamiento (mensual)</td><td class="num">$ 70.000</td><td class="feat-col num">$ 100.000</td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- MONEY TIMELINE -->
+    <section class="section">
+      <p class="eyebrow">Transparencia total</p>
+      <h2>Cómo se ve la inversión mes a mes</h2>
+      <div class="goldline"></div>
+      <p style="margin-bottom:22px">El diseño se paga una sola vez al inicio. A partir de ahí, lo recurrente es el acompañamiento (nuestros honorarios) más la pauta (que se paga a Google). Ejemplo estimado:</p>
+      <div class="money">
+        <div class="mcard">
+          <h3>Opción A · Esencial</h3>
+          <p class="sub">Landing + 1 campaña</p>
+          <div class="mrow"><div class="ml">Puesta en marcha <small>diseño, una sola vez</small></div><div class="mv num">$ 250.000</div></div>
+          <div class="mrow"><div class="ml">Acompañamiento <small>nuestros honorarios / mes</small></div><div class="mv num">$ 70.000</div></div>
+          <div class="mrow"><div class="ml">Pauta a Google <small>estimado / mes</small></div><div class="mv num">$ 80–150mil</div></div>
+          <div class="mrow big"><div class="ml">Mensual desde el 2.º mes</div><div class="mv num">$ 150–220mil</div></div>
+        </div>
+        <div class="mcard feat">
+          <h3>Opción B · Profesional</h3>
+          <p class="sub">Sitio institucional + hasta 3 campañas</p>
+          <div class="mrow"><div class="ml">Puesta en marcha <small>diseño, una sola vez</small></div><div class="mv num">$ 300.000</div></div>
+          <div class="mrow"><div class="ml">Acompañamiento <small>nuestros honorarios / mes</small></div><div class="mv num">$ 100.000</div></div>
+          <div class="mrow"><div class="ml">Pauta a Google <small>estimado / mes</small></div><div class="mv num">$ 150–300mil</div></div>
+          <div class="mrow big"><div class="ml">Mensual desde el 2.º mes</div><div class="mv num">$ 250–400mil</div></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- NOTES + CONDITIONS -->
+    <section class="section">
+      <p class="eyebrow">Condiciones</p>
+      <h2>Aclaraciones y condiciones</h2>
+      <div class="goldline"></div>
+      <div class="notes" style="margin-bottom:24px">
+        <ul>
+          <li><strong>La pauta publicitaria no la cobramos nosotros.</strong> Es la inversión que se abona directamente a Google Ads y queda a nombre del estudio. Los montos indicados son una recomendación inicial: se puede empezar con menos y escalar según los resultados.</li>
+          <li><strong>Los honorarios (acompañamiento) son independientes de la pauta.</strong> Se pagan aunque la pauta se pause, porque cubren la gestión, optimización e informes.</li>
+          <li>Los precios están expresados en <strong>pesos argentinos (ARS)</strong> e incluyen el servicio profesional. No incluyen honorarios por casos o juicios del estudio.</li>
+          <li>La web queda en propiedad del estudio. El acompañamiento puede cancelarse o cambiar de opción en cualquier momento.</li>
+        </ul>
+      </div>
+      <div class="cond">
+        <div class="item">
+          <div class="k">Forma de pago</div>
+          <p>50% para iniciar el proyecto y 50% contra publicación del sitio. El acompañamiento mensual se abona por mes adelantado.</p>
+        </div>
+        <div class="item">
+          <div class="k">Plazo de entrega</div>
+          <p>Entre 48 y 72 horas desde la recepción de los textos e imágenes.</p>
+        </div>
+        <div class="item">
+          <div class="k">Dominio y hosting</div>
+          <p>El dominio (ej. <em>estudiojuridicotino.com.ar</em>) lo abona el estudio. El hosting va sin cargo durante los primeros 6 meses.</p>
+        </div>
+        <div class="item">
+          <div class="k">Validez de la propuesta</div>
+          <p>15 días corridos desde la fecha de emisión. Pasado ese plazo, los valores pueden actualizarse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>¿Avanzamos?</h2>
+      <p>Coordinemos una llamada de 15 minutos para definir la opción ideal y empezar a captar consultas desde Google.</p>
+      <div class="contact">
+        <div><span class="k">Responsable</span><b>Alejandro Moya</b></div>
+        <div><span class="k">Perfil</span><b>SEO &amp; Developer</b></div>
+        <div><span class="k">WhatsApp</span><b>+54 9 11 6499-0312</b></div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <span>Documento confidencial · Preparado para Estudio Jurídico Tino &amp; Asoc.</span>
+      <span>Buenos Aires, Argentina · Septiembre 2026</span>
+    </div>
+
+  </div>
+</div>
